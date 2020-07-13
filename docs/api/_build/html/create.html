@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nf_core.create &#8212; nf-core tools API 1.4 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="nf_core.download" href="download.html" />
+    <link rel="prev" title="nf_core.bump_version" href="bump_version.html" /> 
+  </head><body>
+<!-- your html code here -->
+<a href="https://nf-co.re"><img src="./_static/nf-core-logo.png" width="20%"></a>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="download.html" title="nf_core.download"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="bump_version.html" title="nf_core.bump_version"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">nf-core tools API 1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">nf_core.create</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-nf_core.create">
+<span id="nf-core-create"></span><h1>nf_core.create<a class="headerlink" href="#module-nf_core.create" title="Permalink to this headline">¶</a></h1>
+<p>Creates a nf-core pipeline matching the current
+organization’s specification based on a template.</p>
+<dl class="py class">
+<dt id="nf_core.create.PipelineCreate">
+<em class="property">class </em><code class="sig-prename descclassname">nf_core.create.</code><code class="sig-name descname">PipelineCreate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">description</span></em>, <em class="sig-param"><span class="n">author</span></em>, <em class="sig-param"><span class="n">new_version</span><span class="o">=</span><span class="default_value">'1.0dev'</span></em>, <em class="sig-param"><span class="n">no_git</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">force</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">outdir</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.create.PipelineCreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a nf-core pipeline a la carte from the nf-core best-practise template.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name for the pipeline.</p></li>
+<li><p><strong>description</strong> (<em>str</em>) – Description for the pipeline.</p></li>
+<li><p><strong>author</strong> (<em>str</em>) – Authors name of the pipeline.</p></li>
+<li><p><strong>new_version</strong> (<em>str</em>) – Version flag. Semantic versioning only. Defaults to <cite>1.0dev</cite>.</p></li>
+<li><p><strong>no_git</strong> (<em>bool</em>) – Prevents the creation of a local Git repository for the pipeline. Defaults to False.</p></li>
+<li><p><strong>force</strong> (<em>bool</em>) – Overwrites a given workflow directory with the same name. Defaults to False.
+May the force be with you.</p></li>
+<li><p><strong>outdir</strong> (<em>str</em>) – Path to the local output directory.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="nf_core.create.PipelineCreate.git_init_pipeline">
+<code class="sig-name descname">git_init_pipeline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.create.PipelineCreate.git_init_pipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialises the new pipeline as a Git repository and submits first commit.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.create.PipelineCreate.init_pipeline">
+<code class="sig-name descname">init_pipeline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.create.PipelineCreate.init_pipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the nf-core pipeline.</p>
+<p>Launches cookiecutter, that will ask for required pipeline information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.create.PipelineCreate.make_pipeline_logo">
+<code class="sig-name descname">make_pipeline_logo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.create.PipelineCreate.make_pipeline_logo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch a logo for the new pipeline from the nf-core website</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.create.PipelineCreate.run_cookiecutter">
+<code class="sig-name descname">run_cookiecutter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.create.PipelineCreate.run_cookiecutter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs cookiecutter to create a new nf-core pipeline.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="bump_version.html"
+                        title="previous chapter">nf_core.bump_version</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="download.html"
+                        title="next chapter">nf_core.download</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/create.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="download.html" title="nf_core.download"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="bump_version.html" title="nf_core.bump_version"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">nf-core tools API 1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">nf_core.create</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Phil Ewels, Sven Fillinger.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

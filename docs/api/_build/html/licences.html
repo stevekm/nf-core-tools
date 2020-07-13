@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nf_core.licences &#8212; nf-core tools API 1.4 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="nf_core.lint" href="lint.html" />
+    <link rel="prev" title="nf_core.download" href="download.html" /> 
+  </head><body>
+<!-- your html code here -->
+<a href="https://nf-co.re"><img src="./_static/nf-core-logo.png" width="20%"></a>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="lint.html" title="nf_core.lint"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="download.html" title="nf_core.download"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">nf-core tools API 1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">nf_core.licences</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-nf_core.licences">
+<span id="nf-core-licences"></span><h1>nf_core.licences<a class="headerlink" href="#module-nf_core.licences" title="Permalink to this headline">¶</a></h1>
+<p>Lists software licences for a given workflow.</p>
+<dl class="py class">
+<dt id="nf_core.licences.WorkflowLicences">
+<em class="property">class </em><code class="sig-prename descclassname">nf_core.licences.</code><code class="sig-name descname">WorkflowLicences</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pipeline</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.licences.WorkflowLicences" title="Permalink to this definition">¶</a></dt>
+<dd><p>A nf-core workflow licenses collection.</p>
+<p>Tries to retrieve the license information from all dependencies
+of a given nf-core pipeline.</p>
+<p>A condensed overview with license per dependency can be printed out.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pipeline</strong> (<em>str</em>) – An existing nf-core pipeline name, like <cite>nf-core/hlatyping</cite>
+or short <cite>hlatyping</cite>.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="nf_core.licences.WorkflowLicences.clean_licence_names">
+<code class="sig-name descname">clean_licence_names</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">licences</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.licences.WorkflowLicences.clean_licence_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalises varying licence names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>licences</strong> (<em>list</em>) – A list of licences which are basically raw string objects from
+the licence content information.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Cleaned licences.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.licences.WorkflowLicences.fetch_conda_licences">
+<code class="sig-name descname">fetch_conda_licences</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.licences.WorkflowLicences.fetch_conda_licences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch package licences from Anaconda and PyPi.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.licences.WorkflowLicences.print_licences">
+<code class="sig-name descname">print_licences</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_json</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.licences.WorkflowLicences.print_licences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the fetched license information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>as_json</strong> (<em>boolean</em>) – Prints the information in JSON. Defaults to False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="download.html"
+                        title="previous chapter">nf_core.download</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lint.html"
+                        title="next chapter">nf_core.lint</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/licences.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="lint.html" title="nf_core.lint"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="download.html" title="nf_core.download"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">nf-core tools API 1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">nf_core.licences</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Phil Ewels, Sven Fillinger.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

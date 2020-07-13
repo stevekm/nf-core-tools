@@ -1,0 +1,593 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nf_core.lint &#8212; nf-core tools API 1.4 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="nf_core.list" href="list.html" />
+    <link rel="prev" title="nf_core.licences" href="licences.html" /> 
+  </head><body>
+<!-- your html code here -->
+<a href="https://nf-co.re"><img src="./_static/nf-core-logo.png" width="20%"></a>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="list.html" title="nf_core.list"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="licences.html" title="nf_core.licences"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">nf-core tools API 1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">nf_core.lint</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-nf_core.lint">
+<span id="nf-core-lint"></span><h1>nf_core.lint<a class="headerlink" href="#module-nf_core.lint" title="Permalink to this headline">¶</a></h1>
+<p>Linting policy for nf-core pipeline projects.</p>
+<p>Tests Nextflow-based pipelines to check that they adhere to
+the nf-core community guidelines.</p>
+<dl class="py class">
+<dt id="nf_core.lint.PipelineLint">
+<em class="property">class </em><code class="sig-prename descclassname">nf_core.lint.</code><code class="sig-name descname">PipelineLint</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object to hold linting information and results.
+All objects attributes are set, after the <a class="reference internal" href="#nf_core.lint.PipelineLint.lint_pipeline" title="nf_core.lint.PipelineLint.lint_pipeline"><code class="xref py py-func docutils literal notranslate"><span class="pre">PipelineLint.lint_pipeline()</span></code></a> function was called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – The path to the nf-core pipeline directory.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="nf_core.lint.PipelineLint.conda_config">
+<code class="sig-name descname">conda_config</code><a class="headerlink" href="#nf_core.lint.PipelineLint.conda_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parsed conda configuration file content (<cite>environment.yml</cite>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="nf_core.lint.PipelineLint.conda_package_info">
+<code class="sig-name descname">conda_package_info</code><a class="headerlink" href="#nf_core.lint.PipelineLint.conda_package_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>The conda package(s) information, based on the API requests to Anaconda cloud.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="nf_core.lint.PipelineLint.config">
+<code class="sig-name descname">config</code><a class="headerlink" href="#nf_core.lint.PipelineLint.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Nextflow pipeline configuration file content.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="nf_core.lint.PipelineLint.dockerfile">
+<code class="sig-name descname">dockerfile</code><a class="headerlink" href="#nf_core.lint.PipelineLint.dockerfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of lines (str) from the parsed Dockerfile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="nf_core.lint.PipelineLint.failed">
+<code class="sig-name descname">failed</code><a class="headerlink" href="#nf_core.lint.PipelineLint.failed" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of tuples of the form: <cite>(&lt;error no&gt;, &lt;reason&gt;)</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="nf_core.lint.PipelineLint.files">
+<code class="sig-name descname">files</code><a class="headerlink" href="#nf_core.lint.PipelineLint.files" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of files found during the linting process.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="nf_core.lint.PipelineLint.minNextflowVersion">
+<code class="sig-name descname">minNextflowVersion</code><a class="headerlink" href="#nf_core.lint.PipelineLint.minNextflowVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>The minimum required Nextflow version to run the pipeline.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="nf_core.lint.PipelineLint.passed">
+<code class="sig-name descname">passed</code><a class="headerlink" href="#nf_core.lint.PipelineLint.passed" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of tuples of the form: <cite>(&lt;passed no&gt;, &lt;reason&gt;)</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="nf_core.lint.PipelineLint.path">
+<code class="sig-name descname">path</code><a class="headerlink" href="#nf_core.lint.PipelineLint.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path to the pipeline directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="nf_core.lint.PipelineLint.pipeline_name">
+<code class="sig-name descname">pipeline_name</code><a class="headerlink" href="#nf_core.lint.PipelineLint.pipeline_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The pipeline name, without the <cite>nf-core</cite> tag, for example <cite>hlatyping</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="nf_core.lint.PipelineLint.release_mode">
+<code class="sig-name descname">release_mode</code><a class="headerlink" href="#nf_core.lint.PipelineLint.release_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>True</cite>, if you the to linting was run in release mode, <cite>False</cite> else.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="nf_core.lint.PipelineLint.warned">
+<code class="sig-name descname">warned</code><a class="headerlink" href="#nf_core.lint.PipelineLint.warned" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of tuples of the form: <cite>(&lt;warned no&gt;, &lt;reason&gt;)</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><strong>Attribute specifications</strong></p>
+<p>Some of the more complex attributes of a PipelineLint object.</p>
+<ul>
+<li><p><cite>conda_config</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example</span>
+ <span class="p">{</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;nf-core-hlatyping&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;channels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bioconda&#39;</span><span class="p">,</span> <span class="s1">&#39;conda-forge&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;dependencies&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;optitype=1.3.2&#39;</span><span class="p">,</span> <span class="s1">&#39;yara=0.9.6&#39;</span><span class="p">]</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><cite>conda_package_info</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># See https://api.anaconda.org/package/bioconda/bioconda-utils as an example.</span>
+ <span class="p">{</span>
+    <span class="o">&lt;</span><span class="n">package</span><span class="o">&gt;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">API</span> <span class="n">JSON</span> <span class="n">repsonse</span> <span class="nb">object</span><span class="o">&gt;</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><dl>
+<dt><cite>config</cite>: Produced by calling Nextflow with <code class="code docutils literal notranslate"><span class="pre">nextflow</span> <span class="pre">config</span> <span class="pre">-flat</span> <span class="pre">&lt;workflow</span> <span class="pre">dir&gt;</span></code>. Here is an example from</dt><dd><p>the <a class="reference external" href="https://github.com/nf-core/hlatyping">nf-core/hlatyping</a> pipeline:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">process</span><span class="o">.</span><span class="n">container</span> <span class="o">=</span> <span class="s1">&#39;nfcore/hlatyping:1.1.1&#39;</span>
+<span class="n">params</span><span class="o">.</span><span class="n">help</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">params</span><span class="o">.</span><span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;./results&#39;</span>
+<span class="n">params</span><span class="o">.</span><span class="n">bam</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">params</span><span class="o">.</span><span class="n">single_end</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">params</span><span class="o">.</span><span class="n">seqtype</span> <span class="o">=</span> <span class="s1">&#39;dna&#39;</span>
+<span class="n">params</span><span class="o">.</span><span class="n">solver</span> <span class="o">=</span> <span class="s1">&#39;glpk&#39;</span>
+<span class="n">params</span><span class="o">.</span><span class="n">igenomes_base</span> <span class="o">=</span> <span class="s1">&#39;./iGenomes&#39;</span>
+<span class="n">params</span><span class="o">.</span><span class="n">clusterOptions</span> <span class="o">=</span> <span class="n">false</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_actions_awsfulltest">
+<code class="sig-name descname">check_actions_awsfulltest</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_actions_awsfulltest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks the GitHub Actions awsfulltest is valid.</p>
+<p>Makes sure it is triggered only on <code class="docutils literal notranslate"><span class="pre">release</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_actions_awstest">
+<code class="sig-name descname">check_actions_awstest</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_actions_awstest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks the GitHub Actions awstest is valid.</p>
+<p>Makes sure it is triggered only on <code class="docutils literal notranslate"><span class="pre">push</span></code> to <code class="docutils literal notranslate"><span class="pre">master</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_actions_branch_protection">
+<code class="sig-name descname">check_actions_branch_protection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_actions_branch_protection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks that the GitHub Actions branch protection workflow is valid.</p>
+<p>Makes sure PRs can only come from nf-core dev or ‘patch’ of a fork.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_actions_ci">
+<code class="sig-name descname">check_actions_ci</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_actions_ci" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks that the GitHub Actions CI workflow is valid</p>
+<p>Makes sure tests run with the required nextflow version.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_actions_lint">
+<code class="sig-name descname">check_actions_lint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_actions_lint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks that the GitHub Actions lint workflow is valid</p>
+<p>Makes sure <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">lint</span></code> and <code class="docutils literal notranslate"><span class="pre">markdownlint</span></code> runs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_anaconda_package">
+<code class="sig-name descname">check_anaconda_package</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dep</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_anaconda_package" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query conda package information.</p>
+<p>Sends a HTTP GET request to the Anaconda remote API.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dep</strong> (<em>str</em>) – A conda package name.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>A ValueError</strong><strong>, </strong><strong>if the package name can not be resolved.</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_conda_dockerfile">
+<code class="sig-name descname">check_conda_dockerfile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_conda_dockerfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks the Docker build file.</p>
+<dl class="simple">
+<dt>Checks that:</dt><dd><ul class="simple">
+<li><p>a name is given and is consistent with the pipeline name</p></li>
+<li><p>dependency versions are pinned</p></li>
+<li><p>dependency versions are the latest available</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_conda_env_yaml">
+<code class="sig-name descname">check_conda_env_yaml</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_conda_env_yaml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks that the conda environment file is valid.</p>
+<dl class="simple">
+<dt>Checks that:</dt><dd><ul class="simple">
+<li><p>a name is given and is consistent with the pipeline name</p></li>
+<li><p>check that dependency versions are pinned</p></li>
+<li><p>dependency versions are the latest available</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_cookiecutter_strings">
+<code class="sig-name descname">check_cookiecutter_strings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_cookiecutter_strings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Look for the string ‘cookiecutter’ in all pipeline files.
+Finding it probably means that there has been a copy+paste error from the template.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_docker">
+<code class="sig-name descname">check_docker</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_docker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks that Dockerfile contains the string <code class="docutils literal notranslate"><span class="pre">FROM</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_files_exist">
+<code class="sig-name descname">check_files_exist</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_files_exist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks a given pipeline directory for required files.</p>
+<p>Iterates through the pipeline’s directory content and checkmarks files
+for presence.
+Files that <strong>must</strong> be present:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;nextflow.config&#39;</span><span class="p">,</span>
+<span class="s1">&#39;nextflow_schema.json&#39;</span><span class="p">,</span>
+<span class="s1">&#39;Dockerfile&#39;</span><span class="p">,</span>
+<span class="p">[</span><span class="s1">&#39;LICENSE&#39;</span><span class="p">,</span> <span class="s1">&#39;LICENSE.md&#39;</span><span class="p">,</span> <span class="s1">&#39;LICENCE&#39;</span><span class="p">,</span> <span class="s1">&#39;LICENCE.md&#39;</span><span class="p">],</span> <span class="c1"># NB: British / American spelling</span>
+<span class="s1">&#39;README.md&#39;</span><span class="p">,</span>
+<span class="s1">&#39;CHANGELOG.md&#39;</span><span class="p">,</span>
+<span class="s1">&#39;docs/README.md&#39;</span><span class="p">,</span>
+<span class="s1">&#39;docs/output.md&#39;</span><span class="p">,</span>
+<span class="s1">&#39;docs/usage.md&#39;</span><span class="p">,</span>
+<span class="s1">&#39;.github/workflows/branch.yml&#39;</span><span class="p">,</span>
+<span class="s1">&#39;.github/workflows/ci.yml&#39;</span><span class="p">,</span>
+<span class="s1">&#39;.github/workflows/linting.yml&#39;</span>
+</pre></div>
+</div>
+<p>Files that <em>should</em> be present:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;main.nf&#39;</span><span class="p">,</span>
+<span class="s1">&#39;environment.yml&#39;</span><span class="p">,</span>
+<span class="s1">&#39;conf/base.config&#39;</span><span class="p">,</span>
+<span class="s1">&#39;.github/workflows/awstest.yml&#39;</span><span class="p">,</span>
+<span class="s1">&#39;.github/workflows/awsfulltest.yml&#39;</span>
+</pre></div>
+</div>
+<p>Files that <em>must not</em> be present:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Singularity&#39;</span>
+</pre></div>
+</div>
+<p>Files that <em>should not</em> be present:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;.travis.yml&#39;</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>An AssertionError if neither nextflow.config</strong><strong> or </strong><strong>main.nf found.</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_licence">
+<code class="sig-name descname">check_licence</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_licence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks licence file is MIT.</p>
+<dl class="simple">
+<dt>Currently the checkpoints are:</dt><dd><ul class="simple">
+<li><p>licence file must be long enough (4 or more lines)</p></li>
+<li><p>licence contains the string <em>without restriction</em></p></li>
+<li><p>licence doesn’t have any placeholder variables</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_nextflow_config">
+<code class="sig-name descname">check_nextflow_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_nextflow_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks a given pipeline for required config variables.</p>
+<p>At least one string in each list must be present for fail and warn.
+Any config in config_fail_ifdefined results in a failure.</p>
+<p>Uses <code class="docutils literal notranslate"><span class="pre">nextflow</span> <span class="pre">config</span> <span class="pre">-flat</span></code> to parse pipeline <code class="docutils literal notranslate"><span class="pre">nextflow.config</span></code>
+and print all config variables.
+NB: Does NOT parse contents of main.nf / nextflow script</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_pip_package">
+<code class="sig-name descname">check_pip_package</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dep</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_pip_package" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query PyPi package information.</p>
+<p>Sends a HTTP GET request to the PyPi remote API.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dep</strong> (<em>str</em>) – A PyPi package name.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>A ValueError</strong><strong>, </strong><strong>if the package name can not be resolved</strong><strong> or </strong><strong>the connection timed out.</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_pipeline_name">
+<code class="sig-name descname">check_pipeline_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_pipeline_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether pipeline name adheres to lower case/no hyphen naming convention</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_pipeline_todos">
+<code class="sig-name descname">check_pipeline_todos</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_pipeline_todos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Go through all template files looking for the string ‘TODO nf-core:’</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_readme">
+<code class="sig-name descname">check_readme</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_readme" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks the repository README file for errors.</p>
+<p>Currently just checks the badges at the top of the README.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_schema_lint">
+<code class="sig-name descname">check_schema_lint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_schema_lint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lint the pipeline JSON schema file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_schema_params">
+<code class="sig-name descname">check_schema_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_schema_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that the schema describes all flat params in the pipeline</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.check_version_consistency">
+<code class="sig-name descname">check_version_consistency</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.check_version_consistency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks container tags versions.</p>
+<p>Runs on <code class="docutils literal notranslate"><span class="pre">process.container</span></code> (if set) and <code class="docutils literal notranslate"><span class="pre">$GITHUB_REF</span></code> (if a GitHub Actions release).</p>
+<dl class="simple">
+<dt>Checks that:</dt><dd><ul class="simple">
+<li><p>the container has a tag</p></li>
+<li><p>the version numbers are numeric</p></li>
+<li><p>the version numbers are the same as one-another</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.get_results_md">
+<code class="sig-name descname">get_results_md</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.get_results_md" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to create a markdown file suitable for posting in a GitHub comment</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.github_comment">
+<code class="sig-name descname">github_comment</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.github_comment" title="Permalink to this definition">¶</a></dt>
+<dd><p>If we are running in a GitHub PR, try to post results as a comment</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.lint_pipeline">
+<code class="sig-name descname">lint_pipeline</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">release_mode</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.lint_pipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main linting function.</p>
+<p>Takes the pipeline directory as the primary input and iterates through
+the different linting checks in order. Collects any warnings or errors
+and returns summary at completion. Raises an exception if there is a
+critical error that makes the rest of the tests pointless (eg. no
+pipeline script). Results from this function are printed by the main script.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>release_mode</strong> (<em>boolean</em>) – Activates the release mode, which checks for
+consistent version tags of containers. Default is <cite>False</cite>.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>Summary of test result messages structured as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;pass&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">(</span> <span class="n">test</span><span class="o">-</span><span class="nb">id</span> <span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">message</span> <span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="p">),</span>
+        <span class="p">(</span> <span class="n">test</span><span class="o">-</span><span class="nb">id</span> <span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">message</span> <span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="p">)</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;warn&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="nb">id</span><span class="p">,</span> <span class="n">msg</span><span class="p">)],</span>
+    <span class="s1">&#39;fail&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="nb">id</span><span class="p">,</span> <span class="n">msg</span><span class="p">)],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>If a critical problem is found</strong><strong>, </strong><strong>an AssertionError is raised.</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.lint.PipelineLint.save_json_results">
+<code class="sig-name descname">save_json_results</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">json_fn</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.PipelineLint.save_json_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to dump lint results to a JSON file for downstream use</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="nf_core.lint.run_linting">
+<code class="sig-prename descclassname">nf_core.lint.</code><code class="sig-name descname">run_linting</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pipeline_dir</span></em>, <em class="sig-param"><span class="n">release_mode</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">md_fn</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">json_fn</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.lint.run_linting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs all nf-core linting checks on a given Nextflow pipeline project
+in either <cite>release</cite> mode or <cite>normal</cite> mode (default). Returns an object
+of type <a class="reference internal" href="#nf_core.lint.PipelineLint" title="nf_core.lint.PipelineLint"><code class="xref py py-class docutils literal notranslate"><span class="pre">PipelineLint</span></code></a> after finished.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pipeline_dir</strong> (<em>str</em>) – The path to the Nextflow pipeline root directory</p></li>
+<li><p><strong>release_mode</strong> (<em>bool</em>) – Set this to <cite>True</cite>, if the linting should be run in the <cite>release</cite> mode.
+See <a class="reference internal" href="#nf_core.lint.PipelineLint" title="nf_core.lint.PipelineLint"><code class="xref py py-class docutils literal notranslate"><span class="pre">PipelineLint</span></code></a> for more information.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An object of type <a class="reference internal" href="#nf_core.lint.PipelineLint" title="nf_core.lint.PipelineLint"><code class="xref py py-class docutils literal notranslate"><span class="pre">PipelineLint</span></code></a> that contains all the linting results.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="licences.html"
+                        title="previous chapter">nf_core.licences</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="list.html"
+                        title="next chapter">nf_core.list</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/lint.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="list.html" title="nf_core.list"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="licences.html" title="nf_core.licences"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">nf-core tools API 1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">nf_core.lint</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Phil Ewels, Sven Fillinger.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

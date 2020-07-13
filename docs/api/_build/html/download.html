@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nf_core.download &#8212; nf-core tools API 1.4 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="nf_core.licences" href="licences.html" />
+    <link rel="prev" title="nf_core.create" href="create.html" /> 
+  </head><body>
+<!-- your html code here -->
+<a href="https://nf-co.re"><img src="./_static/nf-core-logo.png" width="20%"></a>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="licences.html" title="nf_core.licences"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="create.html" title="nf_core.create"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">nf-core tools API 1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">nf_core.download</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-nf_core.download">
+<span id="nf-core-download"></span><h1>nf_core.download<a class="headerlink" href="#module-nf_core.download" title="Permalink to this headline">¶</a></h1>
+<p>Downloads a nf-core pipeline to the local file system.</p>
+<dl class="py class">
+<dt id="nf_core.download.DownloadWorkflow">
+<em class="property">class </em><code class="sig-prename descclassname">nf_core.download.</code><code class="sig-name descname">DownloadWorkflow</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pipeline</span></em>, <em class="sig-param"><span class="n">release</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">singularity</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">outdir</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">compress_type</span><span class="o">=</span><span class="default_value">'tar.gz'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.download.DownloadWorkflow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Downloads a nf-core workflow from GitHub to the local file system.</p>
+<p>Can also download its Singularity container image if required.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pipeline</strong> (<em>str</em>) – A nf-core pipeline name.</p></li>
+<li><p><strong>release</strong> (<em>str</em>) – The workflow release version to download, like <cite>1.0</cite>. Defaults to None.</p></li>
+<li><p><strong>singularity</strong> (<em>bool</em>) – Flag, if the Singularity container should be downloaded as well. Defaults to False.</p></li>
+<li><p><strong>outdir</strong> (<em>str</em>) – Path to the local download directory. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="nf_core.download.DownloadWorkflow.compress_download">
+<code class="sig-name descname">compress_download</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.download.DownloadWorkflow.compress_download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take the downloaded files and make a compressed .tar.gz archive.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.download.DownloadWorkflow.download_configs">
+<code class="sig-name descname">download_configs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.download.DownloadWorkflow.download_configs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Downloads the centralised config profiles from nf-core/configs to <code class="xref py py-attr docutils literal notranslate"><span class="pre">self.outdir</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.download.DownloadWorkflow.download_wf_files">
+<code class="sig-name descname">download_wf_files</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.download.DownloadWorkflow.download_wf_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Downloads workflow files from GitHub to the <code class="xref py py-attr docutils literal notranslate"><span class="pre">self.outdir</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.download.DownloadWorkflow.download_workflow">
+<code class="sig-name descname">download_workflow</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.download.DownloadWorkflow.download_workflow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts a nf-core workflow download.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.download.DownloadWorkflow.fetch_workflow_details">
+<code class="sig-name descname">fetch_workflow_details</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">wfs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.download.DownloadWorkflow.fetch_workflow_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches details of a nf-core workflow to download.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>wfs</strong> (<a class="reference internal" href="list.html#nf_core.list.Workflows" title="nf_core.list.Workflows"><em>nf_core.list.Workflows</em></a>) – A nf_core.list.Workflows object</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>LockupError</strong><strong>, </strong><strong>if the pipeline can not be found.</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.download.DownloadWorkflow.find_container_images">
+<code class="sig-name descname">find_container_images</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.download.DownloadWorkflow.find_container_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find container image names for workflow</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.download.DownloadWorkflow.pull_singularity_image">
+<code class="sig-name descname">pull_singularity_image</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">container</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.download.DownloadWorkflow.pull_singularity_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses a local installation of singularity to pull an image from Docker Hub.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>container</strong> (<em>str</em>) – A pipeline’s container name. Usually it is of similar format
+to <cite>nfcore/name:dev</cite>.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>Various exceptions possible from subprocess execution of Singularity.</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.download.DownloadWorkflow.validate_md5">
+<code class="sig-name descname">validate_md5</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fname</span></em>, <em class="sig-param"><span class="n">expected</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.download.DownloadWorkflow.validate_md5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the md5sum for a file on the disk and validate with expected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<em>str</em>) – Path to a local file.</p></li>
+<li><p><strong>expected</strong> (<em>str</em>) – The expected md5sum.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>IOError</strong><strong>, </strong><strong>if the md5sum does not match the remote sum.</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.download.DownloadWorkflow.wf_use_local_configs">
+<code class="sig-name descname">wf_use_local_configs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.download.DownloadWorkflow.wf_use_local_configs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Edit the downloaded nextflow.config file to use the local config files</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="create.html"
+                        title="previous chapter">nf_core.create</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="licences.html"
+                        title="next chapter">nf_core.licences</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/download.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="licences.html" title="nf_core.licences"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="create.html" title="nf_core.create"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">nf-core tools API 1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">nf_core.download</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Phil Ewels, Sven Fillinger.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

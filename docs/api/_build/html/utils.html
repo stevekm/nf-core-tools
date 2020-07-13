@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nf_core.utils &#8212; nf-core tools API 1.4 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="nf_core.list" href="workflow.html" />
+    <link rel="prev" title="nf_core.list" href="list.html" /> 
+  </head><body>
+<!-- your html code here -->
+<a href="https://nf-co.re"><img src="./_static/nf-core-logo.png" width="20%"></a>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="workflow.html" title="nf_core.list"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="list.html" title="nf_core.list"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">nf-core tools API 1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">nf_core.utils</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-nf_core.utils">
+<span id="nf-core-utils"></span><h1>nf_core.utils<a class="headerlink" href="#module-nf_core.utils" title="Permalink to this headline">¶</a></h1>
+<p>Common utility functions for the nf-core python package.</p>
+<dl class="py function">
+<dt id="nf_core.utils.fetch_wf_config">
+<code class="sig-prename descclassname">nf_core.utils.</code><code class="sig-name descname">fetch_wf_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">wf_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.utils.fetch_wf_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses Nextflow to retrieve the the configuration variables
+from a Nextflow workflow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>wf_path</strong> (<em>str</em>) – Nextflow workflow file system path.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Workflow configuration settings.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="nf_core.utils.poll_nfcore_web_api">
+<code class="sig-prename descclassname">nf_core.utils.</code><code class="sig-name descname">poll_nfcore_web_api</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">api_url</span></em>, <em class="sig-param"><span class="n">post_data</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.utils.poll_nfcore_web_api" title="Permalink to this definition">¶</a></dt>
+<dd><p>Poll the nf-core website API</p>
+<p>Takes argument api_url for URL</p>
+<p>Expects API reponse to be valid JSON and contain a top-level ‘status’ key.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="nf_core.utils.setup_requests_cachedir">
+<code class="sig-prename descclassname">nf_core.utils.</code><code class="sig-name descname">setup_requests_cachedir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.utils.setup_requests_cachedir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets up local caching for faster remote HTTP requests.</p>
+<p>Caching directory will be set up in the user’s home directory under
+a .nfcore_cache subdir.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="nf_core.utils.wait_cli_function">
+<code class="sig-prename descclassname">nf_core.utils.</code><code class="sig-name descname">wait_cli_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">poll_func</span></em>, <em class="sig-param"><span class="n">poll_every</span><span class="o">=</span><span class="default_value">20</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.utils.wait_cli_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display a command-line spinner while calling a function repeatedly.</p>
+<p>Keep waiting until that function returns True</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>poll_func</strong> (<em>function</em>) – Function to call</p></li>
+<li><p><strong>poll_every</strong> (<em>int</em>) – How many tenths of a second to wait between function calls. Default: 20.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None. Just sits in an infite loop until the function returns True.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="list.html"
+                        title="previous chapter">nf_core.list</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="workflow.html"
+                        title="next chapter">nf_core.list</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/utils.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="workflow.html" title="nf_core.list"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="list.html" title="nf_core.list"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">nf-core tools API 1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">nf_core.utils</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Phil Ewels, Sven Fillinger.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

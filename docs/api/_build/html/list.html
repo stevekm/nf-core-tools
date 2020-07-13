@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nf_core.list &#8212; nf-core tools API 1.4 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="nf_core.utils" href="utils.html" />
+    <link rel="prev" title="nf_core.lint" href="lint.html" /> 
+  </head><body>
+<!-- your html code here -->
+<a href="https://nf-co.re"><img src="./_static/nf-core-logo.png" width="20%"></a>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="utils.html" title="nf_core.utils"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lint.html" title="nf_core.lint"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">nf-core tools API 1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">nf_core.list</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-nf_core.list">
+<span id="nf-core-list"></span><h1>nf_core.list<a class="headerlink" href="#module-nf_core.list" title="Permalink to this headline">¶</a></h1>
+<p>Lists available nf-core pipelines and versions.</p>
+<dl class="py class">
+<dt id="nf_core.list.LocalWorkflow">
+<em class="property">class </em><code class="sig-prename descclassname">nf_core.list.</code><code class="sig-name descname">LocalWorkflow</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.list.LocalWorkflow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to handle local workflows pulled by nextflow</p>
+<dl class="py method">
+<dt id="nf_core.list.LocalWorkflow.get_local_nf_workflow_details">
+<code class="sig-name descname">get_local_nf_workflow_details</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.list.LocalWorkflow.get_local_nf_workflow_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get full details about a local cached workflow</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="nf_core.list.RemoteWorkflow">
+<em class="property">class </em><code class="sig-prename descclassname">nf_core.list.</code><code class="sig-name descname">RemoteWorkflow</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.list.RemoteWorkflow" title="Permalink to this definition">¶</a></dt>
+<dd><p>A information container for a remote workflow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>dict</em>) – workflow information as they are retrieved from the GitHub repository REST API request
+(<a class="reference external" href="https://developer.github.com/v3/repos/#get">https://developer.github.com/v3/repos/#get</a>).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="nf_core.list.Workflows">
+<em class="property">class </em><code class="sig-prename descclassname">nf_core.list.</code><code class="sig-name descname">Workflows</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filter_by</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sort_by</span><span class="o">=</span><span class="default_value">'release'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.list.Workflows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Workflow container class.</p>
+<p>Is used to collect local and remote nf-core pipelines. Pipelines
+can be sorted, filtered and compared.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter_by</strong> (<em>list</em>) – A list of strings that can be used for filtering.</p></li>
+<li><p><strong>sort_by</strong> (<em>str</em>) – workflows can be sorted by keywords. Keyword must be one of
+<cite>release</cite> (default), <cite>name</cite>, <cite>stars</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="nf_core.list.Workflows.compare_remote_local">
+<code class="sig-name descname">compare_remote_local</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.list.Workflows.compare_remote_local" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matches local to remote workflows.</p>
+<p>If a matching remote workflow is found, the local workflow’s Git commit hash is compared
+with the latest one from remote.</p>
+<p>A boolean flag in <code class="xref py py-attr docutils literal notranslate"><span class="pre">RemoteWorkflow.local_is_latest</span></code> is set to True, if the local workflow
+is the latest.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.list.Workflows.filtered_workflows">
+<code class="sig-name descname">filtered_workflows</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.list.Workflows.filtered_workflows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters remote workflows for keywords.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Filtered remote workflows.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.list.Workflows.get_local_nf_workflows">
+<code class="sig-name descname">get_local_nf_workflows</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.list.Workflows.get_local_nf_workflows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves local Nextflow workflows.</p>
+<p>Local workflows are stored in <code class="xref py py-attr docutils literal notranslate"><span class="pre">self.local_workflows</span></code> list.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.list.Workflows.get_remote_workflows">
+<code class="sig-name descname">get_remote_workflows</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.list.Workflows.get_remote_workflows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves remote workflows from <a class="reference external" href="https://nf-co.re">nf-co.re</a>.</p>
+<p>Remote workflows are stored in <code class="xref py py-attr docutils literal notranslate"><span class="pre">self.remote_workflows</span></code> list.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.list.Workflows.print_json">
+<code class="sig-name descname">print_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.list.Workflows.print_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dump JSON of all parsed information</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nf_core.list.Workflows.print_summary">
+<code class="sig-name descname">print_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.list.Workflows.print_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints a summary of all pipelines.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="nf_core.list.get_local_wf">
+<code class="sig-prename descclassname">nf_core.list.</code><code class="sig-name descname">get_local_wf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workflow</span></em>, <em class="sig-param"><span class="n">revision</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.list.get_local_wf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if this workflow has a local copy and use nextflow to pull it if not</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="nf_core.list.list_workflows">
+<code class="sig-prename descclassname">nf_core.list.</code><code class="sig-name descname">list_workflows</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filter_by</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sort_by</span><span class="o">=</span><span class="default_value">'release'</span></em>, <em class="sig-param"><span class="n">as_json</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.list.list_workflows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints out a list of all nf-core workflows.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter_by</strong> (<em>list</em>) – A list of strings that can be used for filtering.</p></li>
+<li><p><strong>sort_by</strong> (<em>str</em>) – workflows can be sorted by keywords. Keyword must be one of
+<cite>release</cite> (default), <cite>name</cite>, <cite>stars</cite>.</p></li>
+<li><p><strong>as_json</strong> (<em>boolean</em>) – Set to true, if the lists should be printed in JSON.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="nf_core.list.pretty_date">
+<code class="sig-prename descclassname">nf_core.list.</code><code class="sig-name descname">pretty_date</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#nf_core.list.pretty_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms a datetime object or a int() Epoch timestamp into a
+pretty string like ‘an hour ago’, ‘Yesterday’, ‘3 months ago’,
+‘just now’, etc</p>
+<p>Based on <a class="reference external" href="https://stackoverflow.com/a/1551394/713980">https://stackoverflow.com/a/1551394/713980</a>
+Adapted by sven1103</p>
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lint.html"
+                        title="previous chapter">nf_core.lint</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="utils.html"
+                        title="next chapter">nf_core.utils</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/list.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="utils.html" title="nf_core.utils"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lint.html" title="nf_core.lint"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">nf-core tools API 1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">nf_core.list</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Phil Ewels, Sven Fillinger.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>
